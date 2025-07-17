@@ -36,8 +36,12 @@ Other great lightweight options:
 
 
 ###
-curl http://localhost:11434/api/generate -d '{
-  "model": "phi",
-  "prompt": "Suggest 5 SEO-related queries for a blog about AI tools:",
+curl http://localhost:11434/api/pull -d '{"name":"gemma:2b"}'
+
+
+
+curl http://localhost:11434/api/generate -H "Content-Type: application/json" -d '{
+  "model": "gemma:2b",
+  "prompt": "I am auditing a staging domain called itmsstaging.insurancedekho.com. Give me a checklist of all security issues I should test for, including:\n- Header misconfigurations (HSTS, CORS, CSP, etc)\n- Cross-site scripting (XSS)\n- Information disclosure (server headers, debug info)\n- TLS configuration issues\nList tools or curl commands I can use to test these. Dont assume internet access from the model.",
   "stream": false
 }'
