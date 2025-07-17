@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
+
+
+
+
+docker-compose up -d
+
+3. Pull a lightweight model (e.g., phi)
+bash
+Copy
+Edit
+curl http://localhost:11434/api/pull -d '{"name":"phi"}'
+Other great lightweight options:
+
+"tinyllama"
+
+"mistral"
+
+"llama2:7b"
+
+
+
+
+
+###
+curl http://localhost:11434/api/generate -d '{
+  "model": "phi",
+  "prompt": "Suggest 5 SEO-related queries for a blog about AI tools:",
+  "stream": false
+}'
